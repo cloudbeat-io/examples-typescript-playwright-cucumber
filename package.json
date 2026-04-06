@@ -1,0 +1,27 @@
+{
+  "name": "cb-cucumber",
+  "version": "1.0.0",
+  "description": "CloudBeat CucumberJS + Playwright example project",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:login": "cucumber-js features/login",
+    "test:products": "cucumber-js features/products",
+    "test:examples": "cucumber-js features/examples"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.0.0",
+    "@playwright/test": "1.57.0",
+    "@types/node": "^22.13.10",
+    "playwright": "1.57.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "@cloudbeat/cucumber": "^2.0.0",
+    "@cloudbeat/types": "^1.0.8"
+  }
+}
