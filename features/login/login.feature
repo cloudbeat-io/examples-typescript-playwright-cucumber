@@ -1,3 +1,4 @@
+@sanity
 Feature: Login
 
   Scenario: Standard user login behaviour
@@ -6,6 +7,7 @@ Feature: Login
     And Press the login button
     Then Login should be successful
 
+  @loginLockedOut
   Scenario: Locked out user login behaviour
     Given Open the login page
     When Enter username "locked_out_user" and password "secret_sauce"

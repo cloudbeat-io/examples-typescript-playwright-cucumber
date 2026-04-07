@@ -36,6 +36,7 @@ Then('Add output data {string} with value {string}', function (_name: string, _v
 });
 
 Given('Start intercepting browser console logs', function (this: CbWorld) {
+    // it's better to set this event handler inside the Before hook
     this.page.on('console', (message) => cb.onConsole(message));
 });
 

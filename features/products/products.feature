@@ -1,3 +1,4 @@
+@sanity
 Feature: Products
 
   Background:
