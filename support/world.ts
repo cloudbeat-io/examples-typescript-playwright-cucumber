@@ -49,8 +49,16 @@ Before(async function (this: CbWorld, { pickle }) {
   // where browsers are provided by a remote Playwright server.
   // Therefore we connect to the remote server when the variables are present, and fall back to a
   // local launch for regular usage.
+
+
+const wsEndpoint = process.env.PW_TEST_CONNECT_WS_ENDPOINT;
+
+const url = new URL(wsEndpoint);
+url.searchParams.set('launch-options', JSON.stringify({ headless: false }));
+
+
   this.browser = process.env.PW_TEST_CONNECT_WS_ENDPOINT && process.env.CB_AGENT
-    ? await chromium.connect(process.env.PW_TEST_CONNECT_WS_ENDPOINT)
+    ? await chromium.connect(url.toString())
     : await chromium.launch({ headless: true });
 
   this.context = await this.browser.newContext({
