@@ -54,7 +54,7 @@ Before(async function (this: CbWorld, { pickle }) {
 const wsEndpoint = process.env.PW_TEST_CONNECT_WS_ENDPOINT;
 
 const url = new URL(wsEndpoint);
-url.searchParams.set('launch-options', JSON.stringify({ headless: false }));
+url.searchParams.set('launch-options', JSON.stringify({ headless: false, channel: 'chrome' }));
 
 
   this.browser = process.env.PW_TEST_CONNECT_WS_ENDPOINT && process.env.CB_AGENT
