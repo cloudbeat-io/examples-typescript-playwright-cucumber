@@ -81,8 +81,9 @@ AfterStep(async function (this: CbWorld, { result }) {
 });
 
 After(async function (this: CbWorld, { result }) {
-  // get video reference while it's available (before the page is closed)
-  const video = await this.page?.video();
+  // capture every page opened in the context (e.g. additional tabs) before it's closed,
+  // since recordVideo produces one video per page, not just for this.page
+  const pages = this.context?.pages() ?? [];
 
   if (result && result.status !== Status.PASSED) {
     try {
@@ -105,15 +106,22 @@ After(async function (this: CbWorld, { result }) {
   await this.page?.close();
   await this.context?.close();
 
-  // attach video. this should be done after page is closed so the video is properly finalized
-  if (result && result.status !== Status.PASSED && video) {
-    try {
-      const videoPath = path.resolve('reports/videos', `${this.testName}.webm`);
-      fs.mkdirSync('reports/videos', { recursive: true });
-      await video.saveAs(videoPath);
-      cb.addAttachment('video', videoPath);
-    } catch (e: any) {
-      console.error('Failed to retreive video: ' + e.message);
+  // attach videos. this should be done after the page/context is closed so each video is properly finalized
+  if (result && result.status !== Status.PASSED) {
+    for (const [index, page] of pages.entries()) {
+      const video = page.video();
+      if (!video) {
+        continue;
+      }
+      try {
+        const suffix = pages.length > 1 ? `-tab${index + 1}` : '';
+        const videoPath = path.resolve(videosDir, `${this.testName}${suffix}.webm`);
+        fs.mkdirSync(videosDir, { recursive: true });
+        await video.saveAs(videoPath);
+        cb.addAttachment('video', videoPath);
+      } catch (e: any) {
+        console.error(`Failed to retreive video for tab ${index + 1}: ` + e.message);
+      }
     }
   }
 
