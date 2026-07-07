@@ -22,6 +22,7 @@ export interface CbWorld extends World {
   browser: Browser;
   context: BrowserContext;
   page: Page;
+  secondPage?: Page;
   testName: string;
   startTime: Date;
 }
@@ -30,6 +31,7 @@ export class PlaywrightWorld extends World implements CbWorld {
   browser!: Browser;
   context!: BrowserContext;
   page!: Page;
+  secondPage?: Page;
   testName!: string;
   startTime!: Date;
 
