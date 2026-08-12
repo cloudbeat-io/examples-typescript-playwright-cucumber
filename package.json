@@ -21,7 +21,7 @@
     "typescript": "^5.7.0"
   },
   "dependencies": {
-    "@cloudbeat/cucumber": "^3.2.2",
+    "@cloudbeat/cucumber": "^3.2.3",
     "@cloudbeat/types": "^1.0.8"
   }
 }
