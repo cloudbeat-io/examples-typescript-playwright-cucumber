@@ -11,6 +11,17 @@ Feature: Login
     | start | eat |
     |    10 |   1 |
     |    20 |   2 |
+    |    33 |   1 |
+    |    44 |   2 |
+    |    55 |   1 |
+    |    77 |   2 |
+    |    66 |   1 |
+    |    88 |   f |
+    |    99 |   2 |
+    |    00 |   1 |
+    |    dd |   2 |
+    |    ss |   f |
+    |    vv |   2 |
 
   @loginLockedOut
   Scenario: Locked out user login behaviour
