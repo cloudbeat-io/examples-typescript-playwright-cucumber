@@ -2,10 +2,15 @@
 Feature: Login
 
   Scenario: Standard user login behaviour
-    Given Open the login page
+    Given Open the login page <start> and <eat>
     When Enter username "standard_user" and password "secret_sauce"
     And Press the login button
     Then Login should be successful
+
+  Examples:
+    | start | eat |
+    |    10 |   1 |
+    |    20 |   2 |
 
   @loginLockedOut
   Scenario: Locked out user login behaviour
