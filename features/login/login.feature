@@ -2,7 +2,7 @@
 Feature: Login
 
   Scenario: Standard user login behaviour
-    Given Open the login page <start> and <eat>
+    Given Open the login page "<start>" and "<eat>"
     When Enter username "standard_user" and password "secret_sauce"
     And Press the login button
     Then Login should be successful
