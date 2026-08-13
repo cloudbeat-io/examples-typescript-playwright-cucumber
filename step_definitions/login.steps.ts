@@ -9,7 +9,7 @@ function getLoginPage(world: CbWorld) {
     return new LoginPage(world.page, expect as typeof pwExpect);
 }
 
-Given(/^Open the login page (.*)$/, async function (this: CbWorld) {
+Given('Open the login page {string} and {string}', async function (this: CbWorld) {
     const loginPage = getLoginPage(this);
     await loginPage.open();
     await loginPage.assertPageOpen();
